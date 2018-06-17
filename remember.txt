@@ -1,0 +1,40 @@
+Documentation go : zeal
+
+--------------------------------------------------------------------------------------------
+                    chal 1
+
+Base64 to hex 
+test
+    verifier la chaine avec la 2eme chaine donnée
+
+--------------------------------------------------------------------------------------------
+                    chal 2
+
+xor 2 chaines (OU exclusif) 
+convertir en hexadecimal
+appliquer OU exclusif caractere par caractere entre les 2 chaines 
+a[i] ^ b[i]
+
+test 
+    créer une fonction qui convertis en hexa
+    verifier les 2 chaines avec la 3eme convertie en hexadecimale
+--------------------------------------------------------------------------------------------
+                    chal 3
+
+créer une map de rune qui contient toute les lettres d'un livre et qui leur 
+incrémente une valeur on la divise par le total de lettres en float64 pour avoir la fréquence
+(nb d'occurence par lettre / nb total de lettre)
+
+on donne un "score" au lettres de la map selon leur fréquence
+
+appliquer OU exclusif caractere par caractere entre une chaine et la valeur a 
+incrémenter pour tester toute les possibilitées 
+
+a[i] ^ b / a[i] ^ c / a[i] ^ d
+
+scorer / garder le meilleur score (somme des fréquences de chacune des letters dans la chaine) ##1
+print la chaine "Cooking MC's like a pound of bacon" car elle obtient le meilleur score aka la plus grosse 
+somme(cf ##1)
+
+--------------------------------------------------------------------------------------------
+                    chal 4
