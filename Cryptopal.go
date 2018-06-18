@@ -4,6 +4,8 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"log"
+	"math"
+	"math/bits"
 	"unicode/utf8"
 )
 
@@ -55,16 +57,65 @@ func singleXOR(in []byte, key byte) []byte {
 	return ret
 }
 
-func findSingleXORKey(in []byte, c map[rune]float64) []byte {
-	var res []byte
-	var lastScore float64
-	for key := byte(0); key < 255; key++ {
-		out := singleXOR(in, key)
-		score := scoreEnglish(string(out), c)
-		if score > lastScore {
+func findSingleXORKey(in []byte, c map[rune]float64) (res []byte, key byte, score float64) {
+	for k := byte(0); k < 255; k++ {
+		out := singleXOR(in, byte(k))
+		s := scoreEnglish(string(out), c)
+		if s > score {
 			res = out
-			lastScore = score
+			key = byte(k)
+			score = s
+		}
+	}
+	return
+}
+
+func repeatingXOR(in, key []byte) []byte {
+	ret := make([]byte, len(in))
+	for i := range in {
+		ret[i] = in[i] ^ key[i%len(key)]
+	}
+	return ret
+}
+
+func hammingDistance(s1, s2 []byte) int {
+	if len(s1) != len(s2) {
+		panic("hamming distance: different lenghts")
+	}
+	var res int
+	for i := range s1 {
+		res += bits.OnesCount8(s1[i] ^ s2[i])
+	}
+	return res
+}
+
+func findRepeatingXORKeySize(in []byte) int {
+	var res int
+	bestScore := math.MaxFloat64
+	for keyLen := 2; keyLen < 42; keyLen++ {
+		a, b := in[:keyLen*3], in[keyLen*3:keyLen*3*2]
+		score := float64(hammingDistance(a, b)) / float64(keyLen*10)
+		if score < bestScore {
+			res = keyLen
+			bestScore = score
 		}
 	}
 	return res
+}
+
+func findRepeatingXORKey(in []byte, c map[rune]float64) []byte {
+	keySize := findRepeatingXORKeySize(in)
+	column := make([]byte, (len(in)+keySize-1)/keySize)
+	key := make([]byte, keySize)
+	for col := 0; col < keySize; col++ {
+		for row := range column {
+			if row*keySize+col >= len(in) {
+				continue
+			}
+			column[row] = in[row*keySize+col]
+		}
+		_, k, _ := findSingleXORKey(column, c)
+		key[col] = k
+	}
+	return key
 }
