@@ -48,34 +48,3 @@ meme opération que le challenge 3 sauf qu'on se rajoute une boucle qui lis dans
 on garde la meme source pour le scoring 
 il faut que la fonction qui trouve la clef return aussi le score de la chaine gagnante pour continuer 
 a scorer avec les chaines suivantes
-test
-    on print le résultat !! 
-    "Now that the party is jumping"
-
---------------------------------------------------------------------------------------------
-                    chal 5
-
-creer une fonction qui XOR "en boucle" une sequence de caractere ICEICEICE sur toute la taille de la chaine
-le % est parfait on va xor la chaine avec le caractere i%len(chaine) 012012012 pour une chaine a 3 caracteres
-test
-    faire matcher la chaine de retour avec la chaine donnée hexdecoded
-
---------------------------------------------------------------------------------------------
-                    chal 6
-
-hamming distance 
-Le poids de Hamming correspond au nombre de bits différents de zéro
-1011101
-1001001
-chaine XOR
-0010100 hamming distance = 2
-peut etre récupéré en golang par la fonction OnesCount8
-Donc on va l'utiliser :) 
-on compare les 2 chaines (range de s1) si les 2 chaines ne font pas la meme taille cela ne peut pas marcher
-et on lance la fonction  OnesCount8 pour savoir le poids de hamming
-test   
-    tester que notre resultat est de le meme que demandé: 37
-
-créer la fonction qui trouve la taille de la clef grace au poid de hamming 
-et répéter la (single)repeatingXORkey
-selon la taille du message jouer avec les valeur de findRepeatingXORKeySize and GG
