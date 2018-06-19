@@ -29,17 +29,18 @@ incrémente une valeur on la divise par le total de lettres en float64 pour avoi
 
 on donne un "score" au lettres de la map selon leur fréquence
 
-appliquer OU exclusif caractere par caractere entre une chaine et la valeur a 
-incrémenter pour tester toute les possibilitées 
+appliquer OU exclusif caractere par caractere entre la chaine de l'exercice et la valeur a 
+incrémenter pour tester toute les possibilitées (range de char 0-255)
 
 a[i] ^ b / a[i] ^ c / a[i] ^ d
 
-scorer / garder le meilleur score (somme des fréquences de chacune des letters dans la chaine) ##1
+scorer / garder le meilleur score (somme des fréquences de chacune des letters dans la chaine)##1
 
 test
     ecrire la chaine gagnante 
     "Cooking MC's like a pound of bacon" car elle obtient le meilleur score aka la plus grosse 
     somme(cf ##1)
+
 
 --------------------------------------------------------------------------------------------
                     chal 4
@@ -47,4 +48,41 @@ test
 meme opération que le challenge 3 sauf qu'on se rajoute une boucle qui lis dans le fichier 4.txt
 on garde la meme source pour le scoring 
 il faut que la fonction qui trouve la clef return aussi le score de la chaine gagnante pour continuer 
-a scorer avec les chaines suivantes
+a scorer avec les chaines suivantes (léger ajustement du code merci golang)
+
+
+--------------------------------------------------------------------------------------------
+                    chal5 
+
+créer une fonction qui encode la chaine en XOR avec une clef (ICE) en boucle (repeatingXOR)
+
+exemple :
+chaine a encoder
+^
+ICEICEICEICEICEI
+
+test
+    verifier que la chaine fraichement obtenue avec la fonction repeatingXOR
+    correspond avec le résultat du challenge
+
+
+--------------------------------------------------------------------------------------------
+                    chal 6
+
+trouver la taille de la clef utilisée pour ce faire utiliser la "hamming distance" 
+différence (poid) de bytes apres xor
+exemple :
+1100 1011
+^
+1010 0010
+0110 1001 hamming distance = 4
+
+test
+    verifier que la hamming distance obtenue est bien 37
+
+maintenant qu'on a la taille de la clef on va pouvoir décrypter bloc par bloc avec la clef
+
+test
+    trouver un mail cohérent !
+
+
